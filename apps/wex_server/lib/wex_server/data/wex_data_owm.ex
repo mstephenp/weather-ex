@@ -2,7 +2,6 @@ defmodule WexData.Owm do
   @history_max Application.fetch_env!(:wex_server, :history_max)
 
   def get_weather_owm(weather) do
-    IO.inspect weather
     {
       %WexData{
         cloud_cover: [get_clouds(weather)],

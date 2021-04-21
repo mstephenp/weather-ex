@@ -10,6 +10,7 @@ defmodule WexServer.Application do
     children = [
       # Starts a worker by calling: WexServer.Worker.start_link(arg)
       # {WexServer.Worker, arg}
+      {Wex, name: Wex}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
