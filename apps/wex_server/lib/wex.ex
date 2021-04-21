@@ -6,6 +6,7 @@ defmodule Wex do
   end
 
   @impl true
+  @spec init(any) :: {:ok, {WexData.t(), Map.t()}}
   def init(_opts) do
     {:ok, init_weather()}
   end
@@ -15,6 +16,7 @@ defmodule Wex do
     WexService.get_weather()
   end
 
+  @spec current :: WexData.t()
   def current() do
     GenServer.call(Wex, {:current_weather})
   end
