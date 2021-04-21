@@ -1,4 +1,4 @@
-<section class="phx-hero">
+<!--section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
   <p>Peace of mind from prototype to production</p>
 
@@ -9,40 +9,27 @@
         <option value="<%= app %>"><%= app %></option>
       <% end %>
     </datalist>
-    <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
+    <button phx-submit="update" phx-disable-with="Searching...">Go to Hexdocs</button>
   </form>
-</section>
+</section-->
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.5/CHANGELOG.md">v1.5 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-    </ul>
-  </article>
+
+
+<section class="phx-hero">
+  <section class="row">
+    <article class="column">
+    <h1>Current Weather</h1>
+    <div>
+      <h2><%= @weather[:description] %></h2>
+    <div>
+        Avg Temp: <%= Float.round(@weather[:temp], 1) %> deg F
+    </div>
+    <div>
+        Avg Pressure: <%= Float.round(@weather[:pressure], 2) %> mmHg
+    </div>
+    <div>
+      <button phx-click="update" phx-disable-with="updating..."> update </button>
+    </div>
+    </article>
+  </section>
 </section>

@@ -30,7 +30,7 @@ defmodule WexData.Owm do
     }
   end
 
-  def get_clouds(weather) do
+  defp get_clouds(weather) do
     weather[:clouds]["all"]
   end
 

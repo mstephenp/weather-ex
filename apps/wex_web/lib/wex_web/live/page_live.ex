@@ -3,7 +3,14 @@ defmodule WexWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
+    {:ok, assign(socket,
+      query: "",
+      results: %{},
+      weather: [
+        temp: Wex.average_temp(),
+        pressure: Wex.average_pressure(),
+        description: Wex.description()
+      ])}
   end
 
   @impl true
@@ -23,6 +30,17 @@ defmodule WexWeb.PageLive do
          |> put_flash(:error, "No dependencies found matching \"#{query}\"")
          |> assign(results: %{}, query: query)}
     end
+  end
+
+  @impl true
+  def handle_event("update", _value, socket) do
+    Wex.update()
+    {:noreply, socket
+      |> assign(weather: [
+        temp: Wex.average_temp(),
+        pressure: Wex.average_pressure(),
+        description: Wex.description()
+      ])}
   end
 
   defp search(query) do

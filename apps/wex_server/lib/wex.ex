@@ -26,6 +26,11 @@ defmodule Wex do
     GenServer.cast(Wex, {:update_weather})
   end
 
+  @spec description() :: String.t()
+  def description() do
+    GenServer.call(Wex, {:description})
+  end
+
   @spec average_temp :: number()
   def average_temp() do
     GenServer.call(Wex, {:avg_temp})
@@ -52,6 +57,9 @@ defmodule Wex do
     case call do
       {:current_weather} ->
         {:reply, current, {current, current_raw}}
+
+      {:description} ->
+        {:reply, current.description, {current, current_raw}}
 
       {:avg_temp} ->
         {:reply, avg(current.temp), {current, current_raw}}
