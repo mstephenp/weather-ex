@@ -11,7 +11,9 @@ defmodule WexWeb.PageLive do
          temp: Wex.average_temp(),
          pressure: Wex.average_pressure(),
          description: Wex.description(),
-         location: Wex.location()
+         location: Wex.location(),
+         wind_speed: Wex.average_windspeed(),
+         humidity: Wex.average_humidity()
        ]
      )}
   end
@@ -46,7 +48,9 @@ defmodule WexWeb.PageLive do
          temp: Wex.average_temp(),
          pressure: Wex.average_pressure(),
          description: Wex.description(),
-         location: Wex.location()
+         location: Wex.location(),
+         wind_speed: Wex.average_windspeed(),
+         humidity: Wex.average_humidity()
        ]
      )}
   end

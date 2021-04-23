@@ -28,10 +28,16 @@
         Avg Pressure: <%= Float.round(@weather[:pressure], 2) %> mmHg
     </div>
     <div>
-      <button phx-click="update" phx-disable-with="updating..."> update </button>
+        Avg Humidity: <%= Float.round(@weather[:humidity], 2) %>
+    </div>
+    <div>
+        Avg Wind Speed: <%= Float.round(@weather[:wind_speed], 2) %> mph
     </div>
     </article>
   </section>
+  <div>
+      <button phx-click="update" phx-disable-with="updating..."> update </button>
+    </div>
 </section>
 
 <div>
