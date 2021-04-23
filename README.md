@@ -3,7 +3,7 @@
 ### *An Elixir / Phoenix based weather app* 
 
 ### Supported backends
-- [Open Weather](https://openweathermap.org)
+- [Open Weather Map](https://openweathermap.org)
 - [Weatherbit](https://www.weatherbit.io/)
 
 ### Configuration
