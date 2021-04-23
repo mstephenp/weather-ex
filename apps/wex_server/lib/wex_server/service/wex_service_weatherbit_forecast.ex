@@ -1,12 +1,17 @@
-defmodule WexService.OpenWeatherMap do
+defmodule WexService.Weatherbit.Forecast do
   use HTTPoison.Base
 
   @expected_fields ~w(
-    main wind clouds rain snow weather sys name
+    data
   )
 
+  # http://api.weatherbit.io/v2.0/forecast/daily
+  # ?city=LOCATION
+  # &key=APIKEY
+  # &units=I for IMPERIAL (F not C)
+
   def process_request_url(url) do
-    "http://api.openweathermap.org/data/2.5/weather" <> url
+    "http://api.weatherbit.io/v2.0/forecast/daily" <> url
   end
 
   def process_response_body(body) do

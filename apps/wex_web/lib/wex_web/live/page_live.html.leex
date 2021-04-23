@@ -18,7 +18,7 @@
 <section class="phx-hero">
   <section class="row">
     <article class="column">
-    <h1>Current Weather</h1>
+    <h1>Current Weather for <%= @weather[:location] %></h1>
     <div>
       <h2><%= @weather[:description] %></h2>
     <div>
@@ -33,3 +33,6 @@
     </article>
   </section>
 </section>
+
+<div>
+  Powered by <%= to_string(Application.fetch_env!(:wex_server, :external_service)) %>

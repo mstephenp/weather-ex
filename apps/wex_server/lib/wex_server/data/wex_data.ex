@@ -2,6 +2,8 @@ defmodule WexData do
   defstruct [
     :description,
     :temp,
+    :temp_min,
+    :temp_max,
     :pressure,
     :humidity,
     :wind_speed,

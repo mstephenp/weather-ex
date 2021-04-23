@@ -4,54 +4,67 @@ defmodule WexData.Owm do
   def get_weather_owm(weather) do
     {
       %WexData{
-        cloud_cover: [get_clouds(weather)],
-        description: get_description(weather),
-        humidity: [get_humidity(weather)],
-        pressure: [get_pressure(weather)],
-        temp: [get_temp(weather)],
-        wind_speed: [get_wind_speed(weather)]
+        cloud_cover: [get(weather, :clouds)],
+        description: get(weather, :description),
+        humidity: [get(weather, :humidity)],
+        pressure: [get(weather, :pressure)],
+        temp: [get(weather, :temp)],
+        temp_min: [get(weather, :temp_min)],
+        temp_max: [get(weather, :temp_max)],
+        wind_speed: [get(weather, :wind_speed)],
+        location: get(weather, :location)
+
       },
       weather
     }
   end
 
   def update_weather_owm(raw, {prev_weather, _prev_raw}) do
-
     {
       %WexData{
-        description: get_description(raw),
-        cloud_cover: trim_length(prev_weather.cloud_cover, get_clouds(raw)),
-        humidity: trim_length(prev_weather.humidity, get_humidity(raw)),
-        pressure: trim_length(prev_weather.pressure, get_pressure(raw)),
-        temp: trim_length(prev_weather.temp, get_temp(raw)),
-        wind_speed: trim_length(prev_weather.wind_speed, get_wind_speed(raw))
+        description: get(raw, :description),
+        cloud_cover: trim_length(prev_weather.cloud_cover, get(raw, :clouds)),
+        humidity: trim_length(prev_weather.humidity, get(raw, :humidity)),
+        pressure: trim_length(prev_weather.pressure, get(raw, :pressure)),
+        temp: trim_length(prev_weather.temp, get(raw, :temp)),
+        temp_min: trim_length(prev_weather.temp_min, get(raw, :temp_min)),
+        temp_max: trim_length(prev_weather.temp_max, get(raw, :temp_max)),
+        wind_speed: trim_length(prev_weather.wind_speed, get(raw, :wind_speed)),
+        location: prev_weather.location
       },
       raw
     }
   end
 
-  defp get_clouds(weather) do
-    weather[:clouds]["all"]
-  end
+  defp get(weather, key) do
+    case key do
+      :temp ->
+        weather[:main]["temp"]
 
-  defp get_temp(weather) do
-    weather[:main]["temp"]
-  end
+      :temp_max ->
+        weather[:main]["temp_max"]
 
-  defp get_pressure(weather) do
-    weather[:main]["pressure"]
-  end
+      :temp_min ->
+        weather[:main]["temp_min"]
 
-  defp get_wind_speed(weather) do
-    weather[:wind]["speed"]
-  end
+      :clouds ->
+        weather[:clouds]["all"]
 
-  defp get_humidity(weather) do
-    weather[:main]["humidity"]
-  end
+      :pressure ->
+        weather[:main]["pressure"]
 
-  defp get_description(weather) do
-    List.first(weather[:weather])["description"]
+      :wind_speed ->
+        weather[:wind]["speed"]
+
+      :humidity ->
+        weather[:main]["humidity"]
+
+      :description ->
+        List.first(weather[:weather])["description"]
+
+      :location ->
+        weather[:name]
+    end
   end
 
   defp trim_length(list, value) do

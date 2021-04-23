@@ -18,7 +18,7 @@ defmodule WexService do
     )
   end
 
-  defp get_current_weather() do
+  def get_current_weather() do
     case @external_service do
       :openweathermap ->
         owm_config = Application.fetch_env!(:wex_server, :wex_service_owm)
@@ -30,9 +30,21 @@ defmodule WexService do
       :weatherbit ->
         weatherbit_config = Application.fetch_env!(:wex_server, :wex_service_weatherbit)
 
-        WexService.Weatherbit.get!(
-          "?key=#{weatherbit_config[:api_key]}&city=#{weatherbit_config[:location]}&units=#{weatherbit_config[:units]}"
-        ).body[:data]
+        current =
+          WexService.Weatherbit.get!(
+            "?key=#{weatherbit_config[:api_key]}&city=#{weatherbit_config[:location]}&units=#{
+              weatherbit_config[:units]
+            }"
+          ).body[:data]
+
+        forecast =
+          WexService.Weatherbit.Forecast.get!(
+            "?days=#{weatherbit_config[:days]}&key=#{weatherbit_config[:api_key]}&city=#{
+              weatherbit_config[:location]
+            }&units=#{weatherbit_config[:units]}"
+          ).body[:data]
+
+        current ++ forecast
 
       _ ->
         # space to add different backend api calls

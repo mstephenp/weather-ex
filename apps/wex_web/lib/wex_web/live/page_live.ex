@@ -3,14 +3,17 @@ defmodule WexWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket,
-      query: "",
-      results: %{},
-      weather: [
-        temp: Wex.average_temp(),
-        pressure: Wex.average_pressure(),
-        description: Wex.description()
-      ])}
+    {:ok,
+     assign(socket,
+       query: "",
+       results: %{},
+       weather: [
+         temp: Wex.average_temp(),
+         pressure: Wex.average_pressure(),
+         description: Wex.description(),
+         location: Wex.location()
+       ]
+     )}
   end
 
   @impl true
@@ -35,12 +38,17 @@ defmodule WexWeb.PageLive do
   @impl true
   def handle_event("update", _value, socket) do
     Wex.update()
-    {:noreply, socket
-      |> assign(weather: [
-        temp: Wex.average_temp(),
-        pressure: Wex.average_pressure(),
-        description: Wex.description()
-      ])}
+
+    {:noreply,
+     socket
+     |> assign(
+       weather: [
+         temp: Wex.average_temp(),
+         pressure: Wex.average_pressure(),
+         description: Wex.description(),
+         location: Wex.location()
+       ]
+     )}
   end
 
   defp search(query) do

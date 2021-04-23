@@ -51,6 +51,10 @@ defmodule Wex do
     GenServer.call(Wex, {:avg_windspeed})
   end
 
+  @spec location :: String.t()
+  def location() do
+    GenServer.call(Wex, {:location})
+  end
 
   @impl true
   def handle_call(call, _from, {current, current_raw}) do
@@ -72,6 +76,9 @@ defmodule Wex do
 
       {:avg_windspeed} ->
         {:reply, avg(current.wind_speed), {current, current_raw}}
+
+      {:location} ->
+        {:reply, current.location, {current, current_raw}}
     end
   end
 
@@ -79,7 +86,6 @@ defmodule Wex do
   def avg(values) do
     Enum.sum(values) / length(values)
   end
-
 
   @impl true
   def handle_cast(cast, current) do
