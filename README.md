@@ -8,12 +8,10 @@
 
 ### Configuration
 
-1. Add a config/config.exs to the project root
-2. Put the following:
+1. Change config/example_config.exs to config/config.exs in the project root
+2. Modify the following:
 
 ```elixir
-import Config
-
 config :wex_server,
   history_max: 10,
   # external_service: :weatherbit,
