@@ -28,12 +28,12 @@ defmodule WexWeb.ChannelCase do
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(WexWeb.Repo)
+  setup _tags do
+    # :ok = Ecto.Adapters.SQL.Sandbox.checkout(WexWeb.Repo)
 
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(WexWeb.Repo, {:shared, self()})
-    end
+    # unless tags[:async] do
+    #   Ecto.Adapters.SQL.Sandbox.mode(WexWeb.Repo, {:shared, self()})
+    # end
 
     :ok
   end

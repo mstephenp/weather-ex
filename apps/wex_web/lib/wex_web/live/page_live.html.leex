@@ -1,44 +1,55 @@
-<!--section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
-
-  <form phx-change="suggest" phx-submit="search">
-    <input type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
-    <datalist id="results">
-      <%= for {app, _vsn} <- @results do %>
-        <option value="<%= app %>"><%= app %></option>
-      <% end %>
-    </datalist>
-    <button phx-submit="update" phx-disable-with="Searching...">Go to Hexdocs</button>
-  </form>
-</section-->
-
-
-
 <section class="phx-hero">
   <section class="row">
     <article class="column">
     <h1>Current Weather for <%= @weather[:location] %></h1>
-    <div>
-      <h2><%= @weather[:description] %></h2>
-    <div>
-        Avg Temp: <%= Float.round(@weather[:temp], 1) %> deg F
-    </div>
-    <div>
-        Avg Pressure: <%= Float.round(@weather[:pressure], 2) %> mmHg
-    </div>
-    <div>
-        Avg Humidity: <%= Float.round(@weather[:humidity], 2) %>
-    </div>
-    <div>
-        Avg Wind Speed: <%= Float.round(@weather[:wind_speed], 2) %> mph
-    </div>
+      <div class="description">
+        <h2><%= @weather[:description] %></h2>
+      </div>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            Temp:
+          </td>
+          <td>
+            <%= Float.round(@weather[:temp], 1) %> F
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Pressure:
+          </td>
+          <td>
+            <%= Float.round(@weather[:pressure], 2) %> mmHg
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Humidity:
+          </td>
+          <td>
+            <%= Float.round(@weather[:humidity], 2) %>%
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Wind Speed:
+          </td>
+          <td>
+            <%= Float.round(@weather[:wind_speed], 2) %> mph
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     </article>
   </section>
   <div>
-      <button phx-click="update" phx-disable-with="updating..."> update </button>
+      <button class="button button-outline" phx-click="update" phx-disable-with="updating..."> update </button>
     </div>
 </section>
 
 <div>
   Powered by <%= to_string(Application.fetch_env!(:wex_server, :external_service)) %>
+</div>
