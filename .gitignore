@@ -23,4 +23,4 @@ erl_crash.dump
 # Temporary files for e.g. tests
 /tmp
 
-/config
+/config/config.exs
