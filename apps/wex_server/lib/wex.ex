@@ -56,6 +56,11 @@ defmodule Wex do
     GenServer.call(Wex, {:location})
   end
 
+  @spec ext_service :: String.t()
+  def ext_service() do
+    GenServer.call(Wex, {:ext_service})
+  end
+
   @impl true
   def handle_call(call, _from, {current, current_raw}) do
     case call do
@@ -79,6 +84,9 @@ defmodule Wex do
 
       {:location} ->
         {:reply, current.location, {current, current_raw}}
+
+      {:ext_service} ->
+        {:reply, current.ext_service, {current, current_raw}}
     end
   end
 

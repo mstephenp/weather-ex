@@ -21,7 +21,12 @@
             Pressure:
           </td>
           <td>
-            <%= Float.round(@weather[:pressure], 2) %> mmHg
+            <%= Float.round(@weather[:pressure], 2) %>
+            <%= if @weather[:ext_service] == :openweathermap do %>
+              hPa
+            <%= else %>
+              mb
+            <%= end %>
           </td>
         </tr>
         <tr>

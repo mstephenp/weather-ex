@@ -8,7 +8,8 @@ defmodule WexData do
     :humidity,
     :wind_speed,
     :cloud_cover,
-    :location
+    :location,
+    :ext_service
   ]
 
   def get_weather(backend, weather) do

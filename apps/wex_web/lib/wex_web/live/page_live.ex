@@ -13,7 +13,8 @@ defmodule WexWeb.PageLive do
          description: Wex.description(),
          location: Wex.location(),
          wind_speed: Wex.average_windspeed(),
-         humidity: Wex.average_humidity()
+         humidity: Wex.average_humidity(),
+         ext_service: Wex.ext_service()
        ]
      )}
   end
@@ -50,7 +51,8 @@ defmodule WexWeb.PageLive do
          description: Wex.description(),
          location: Wex.location(),
          wind_speed: Wex.average_windspeed(),
-         humidity: Wex.average_humidity()
+         humidity: Wex.average_humidity(),
+         ext_service: Wex.ext_service()
        ]
      )}
   end

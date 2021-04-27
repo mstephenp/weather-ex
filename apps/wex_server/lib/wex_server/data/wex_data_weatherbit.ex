@@ -12,7 +12,8 @@ defmodule WexData.Weatherbit do
         temp_min: [get_forecasted(forecast, :temp_min)],
         temp_max: [get_forecasted(forecast, :temp_max)],
         wind_speed: [get(weather, :wind_speed)],
-        location: get(weather, :location)
+        location: get(weather, :location),
+        ext_service: :weatherbit
       },
       weather
     }
@@ -29,7 +30,8 @@ defmodule WexData.Weatherbit do
         temp_min: trim_length(prev_weather.temp_min, get_forecasted(forecast, :temp_min)),
         temp_max: trim_length(prev_weather.temp_max, get_forecasted(forecast, :temp_max)),
         wind_speed: trim_length(prev_weather.wind_speed, get(current_weather, :wind_speed)),
-        location: prev_weather.location
+        location: prev_weather.location,
+        ext_service: :weatherbit
       },
       current_weather
     }
